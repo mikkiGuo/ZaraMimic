@@ -14,6 +14,7 @@ public class CategoryPresenter implements ICategoryPresenter, IDataManager.OnCat
     ICategoryView iCategoryView;
     IDataManager iDataManager;
     Context context;
+
     public CategoryPresenter(CategoryActivity categoryActivity) {
         iCategoryView = categoryActivity;
         iDataManager = new DataManager(categoryActivity);

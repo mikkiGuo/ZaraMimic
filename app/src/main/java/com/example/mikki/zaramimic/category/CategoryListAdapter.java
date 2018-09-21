@@ -5,10 +5,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.mikki.zaramimic.R;
 import com.example.mikki.zaramimic.data.network.model.Category;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -39,6 +41,8 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.tv_name.setText(categoryList.get(position).getCname());
         holder.tv_desccription.setText(categoryList.get(position).getCdiscription());
+        String img_url = categoryList.get(position).getCimagerl();
+        Picasso.get().load(img_url).into(holder.img_category);
     }
 
     @Override
@@ -52,12 +56,14 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
         TextView tv_name, tv_desccription;
+        ImageView img_category;
 
         public MyViewHolder(View itemView) {
             super(itemView);
 
             tv_name = itemView.findViewById(R.id.tv_name);
             tv_desccription = itemView.findViewById(R.id.tv_description);
+            img_category = itemView.findViewById(R.id.img_category);
 
         }
 

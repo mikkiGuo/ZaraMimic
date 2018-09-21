@@ -26,6 +26,16 @@ public class DataManager implements  IDataManager{
     }
 
     @Override
+    public void getSubCategoriesFromServer(OnSubCategoriesListener listener) {
+        networkHelper.getSubCategoriesFromServer(listener);
+    }
+
+    @Override
+    public void getProductListFromServer(OnProductListListener listener) {
+        networkHelper.getProductListFromServer(listener);
+    }
+
+    @Override
     public void testDb(OnCategoriesListener listener) {
         networkHelper.testDb(listener);
     }

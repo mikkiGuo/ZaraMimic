@@ -4,6 +4,8 @@ import com.example.mikki.zaramimic.data.database.IDbHelper;
 import com.example.mikki.zaramimic.data.database.model.TodoNote;
 import com.example.mikki.zaramimic.data.network.INetworkHelper;
 import com.example.mikki.zaramimic.data.network.model.Category;
+import com.example.mikki.zaramimic.data.network.model.Product;
+import com.example.mikki.zaramimic.data.network.model.SubCategory;
 
 import java.util.List;
 
@@ -21,4 +23,15 @@ public interface IDataManager extends IDbHelper, INetworkHelper {
         //below methods is to test mvp framework connections.
         public void connectToSever();
     }
+
+    interface OnSubCategoriesListener{
+
+        public void bindSubCategoriesToView(List<SubCategory> subCategories);
+    }
+
+    interface OnProductListListener{
+        public void bindProductsToView(List<Product> productList);
+    }
+
+
 }
