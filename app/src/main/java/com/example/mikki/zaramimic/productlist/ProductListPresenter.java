@@ -26,7 +26,8 @@ public class ProductListPresenter implements IProductListPresenter, IDataManager
 
     @Override
     public void bindProductsToView(List<Product> productList) {
-        iProductListView.showToast(productList.get(0).getPname());
+        //iProductListView.showToast(productList.get(0).getPname());
+        iProductListView.showProductList(productList);
     }
 
 

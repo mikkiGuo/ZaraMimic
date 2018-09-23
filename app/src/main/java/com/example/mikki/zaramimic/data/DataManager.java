@@ -7,6 +7,8 @@ import com.example.mikki.zaramimic.data.database.IDbHelper;
 import com.example.mikki.zaramimic.data.database.model.TodoNote;
 import com.example.mikki.zaramimic.data.network.INetworkHelper;
 import com.example.mikki.zaramimic.data.network.NetworkHelper;
+import com.example.mikki.zaramimic.data.network.model.Login;
+import com.example.mikki.zaramimic.data.network.model.UserProfile;
 
 
 public class DataManager implements  IDataManager{
@@ -16,7 +18,23 @@ public class DataManager implements  IDataManager{
     public DataManager(Context context) {
 
         dbHelper = new DbHelper(context);
-        networkHelper = new NetworkHelper();
+        networkHelper = new NetworkHelper(context);
+    }
+
+
+    @Override
+    public void checkLoginValidation(OnLoginListener listener, Login login) {
+        networkHelper.checkLoginValidation(listener, login);
+    }
+
+    @Override
+    public void checkEmailFromServer(OnForgotPWListener listener, String email) {
+        networkHelper.checkEmailFromServer(listener, email);
+    }
+
+    @Override
+    public void userRegistration(OnSignUpListener listener, UserProfile profile) {
+        networkHelper.userRegistration(listener, profile);
     }
 
 

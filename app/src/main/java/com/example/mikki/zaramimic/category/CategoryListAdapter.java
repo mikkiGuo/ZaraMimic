@@ -16,11 +16,16 @@ import java.util.List;
 
 public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapter.MyViewHolder>{
 
+    public interface OnItemClickListener{
+        void onItemClick(Category category);
+    }
 
-    List<Category> categoryList;
+    private  List<Category> categoryList;
+    private OnItemClickListener listener;
 
-    public CategoryListAdapter(List<Category> list) {
+    public CategoryListAdapter(List<Category> list, OnItemClickListener listener) {
         categoryList = list;
+        this.listener = listener;
     }
 
 
@@ -40,9 +45,9 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
     //bind data with the holder
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.tv_name.setText(categoryList.get(position).getCname());
-        holder.tv_desccription.setText(categoryList.get(position).getCdiscription());
         String img_url = categoryList.get(position).getCimagerl();
         Picasso.get().load(img_url).into(holder.img_category);
+        holder.bind(categoryList.get(position), listener);
     }
 
     @Override
@@ -55,16 +60,24 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
     //holding the item and the view.
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView tv_name, tv_desccription;
+        TextView tv_name;
         ImageView img_category;
 
         public MyViewHolder(View itemView) {
             super(itemView);
 
             tv_name = itemView.findViewById(R.id.tv_name);
-            tv_desccription = itemView.findViewById(R.id.tv_description);
             img_category = itemView.findViewById(R.id.img_category);
 
+        }
+
+        public void bind(final Category category, final OnItemClickListener listener){
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.onItemClick(category);
+                }
+            });
         }
 
 

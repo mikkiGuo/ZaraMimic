@@ -16,6 +16,20 @@ public interface IDataManager extends IDbHelper, INetworkHelper {
         public void connectToDb();
     }
 
+    interface OnSignUpListener{
+        public void isSignUpSuccessful(boolean result);
+    }
+
+    interface OnLoginListener{
+
+        public void isAuthorized(boolean result);
+
+    }
+
+    interface OnForgotPWListener{
+        public void isEmailExisted(boolean result);
+    }
+
     interface OnCategoriesListener{
 
         public void bindCategoriesToView(List<Category> categoryList);
@@ -25,7 +39,6 @@ public interface IDataManager extends IDbHelper, INetworkHelper {
     }
 
     interface OnSubCategoriesListener{
-
         public void bindSubCategoriesToView(List<SubCategory> subCategories);
     }
 

@@ -1,5 +1,6 @@
 package com.example.mikki.zaramimic.category;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -11,14 +12,16 @@ import android.widget.Toast;
 
 import com.example.mikki.zaramimic.R;
 import com.example.mikki.zaramimic.data.network.model.Category;
+import com.example.mikki.zaramimic.main.MainActivity;
+import com.example.mikki.zaramimic.productlist.ProductListActivity;
 
 import java.util.List;
 
 public class CategoryActivity extends AppCompatActivity implements ICategoryView{
 
-    RecyclerView recyclerView;
-
     ICategoryPresenter iCategoryPresenter;
+
+    RecyclerView recyclerView;
     Adapter adapter;
 
 
@@ -45,10 +48,11 @@ public class CategoryActivity extends AppCompatActivity implements ICategoryView
 
         Category c = categoryList.get(0);
         Log.d("show", "showCategoryList: " + c.getCname());
-        adapter = new CategoryListAdapter(categoryList);
+        adapter = new CategoryListAdapter(categoryList, iCategoryPresenter.getItemClickListener());
         recyclerView.setAdapter(adapter);
 
         Toast.makeText(this, "hello", Toast.LENGTH_SHORT).show();
 
     }
+
 }

@@ -1,15 +1,17 @@
 package com.example.mikki.zaramimic.category;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 
 import com.example.mikki.zaramimic.data.DataManager;
 import com.example.mikki.zaramimic.data.IDataManager;
 import com.example.mikki.zaramimic.data.network.model.Category;
+import com.example.mikki.zaramimic.main.MainActivity;
 
 import java.util.List;
 
-public class CategoryPresenter implements ICategoryPresenter, IDataManager.OnCategoriesListener {
+public class CategoryPresenter implements ICategoryPresenter, IDataManager.OnCategoriesListener, CategoryListAdapter.OnItemClickListener {
 
     ICategoryView iCategoryView;
     IDataManager iDataManager;
@@ -29,7 +31,6 @@ public class CategoryPresenter implements ICategoryPresenter, IDataManager.OnCat
 
     }
 
-
     @Override
     public void bindCategoriesToView(List<Category> categoryList) {
 
@@ -37,10 +38,22 @@ public class CategoryPresenter implements ICategoryPresenter, IDataManager.OnCat
 
         iCategoryView.showCategoryList(categoryList);
 
+    }
 
+    @Override
+    public CategoryListAdapter.OnItemClickListener getItemClickListener() {
+        return this;
     }
 
 
+    @Override
+    public void onItemClick(Category category) {
+        Intent intent = new Intent(context, MainActivity.class);
+        context.startActivity(intent);
+    }
+
+
+    //below method is for testing purpose
     @Override
     public void connectToSever() {
 
