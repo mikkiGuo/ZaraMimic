@@ -4,10 +4,10 @@ import android.content.Context;
 
 import com.example.mikki.zaramimic.data.database.DbHelper;
 import com.example.mikki.zaramimic.data.database.IDbHelper;
-import com.example.mikki.zaramimic.data.database.model.TodoNote;
 import com.example.mikki.zaramimic.data.network.INetworkHelper;
 import com.example.mikki.zaramimic.data.network.NetworkHelper;
 import com.example.mikki.zaramimic.data.network.model.Login;
+import com.example.mikki.zaramimic.data.network.model.Product;
 import com.example.mikki.zaramimic.data.network.model.UserProfile;
 
 
@@ -28,8 +28,8 @@ public class DataManager implements  IDataManager{
     }
 
     @Override
-    public void checkEmailFromServer(OnForgotPWListener listener, String email) {
-        networkHelper.checkEmailFromServer(listener, email);
+    public void sendEmailToServerForReset(OnForgotPWListener listener, String email) {
+        networkHelper.sendEmailToServerForReset(listener, email);
     }
 
     @Override
@@ -53,28 +53,14 @@ public class DataManager implements  IDataManager{
         networkHelper.getProductListFromServer(listener);
     }
 
-    @Override
-    public void testDb(OnCategoriesListener listener) {
-        networkHelper.testDb(listener);
-    }
+
+    /*---------------------------------------------------------------------------------------------
+                                    Local Database Methods
+     ---------------------------------------------------------------------------------------------*/
 
     @Override
-    public void createRow(IDataManager.OnResponseListener listener) {
-        dbHelper.createRow(listener);
+    public void addProductToDB(OnProductListener listener, Product product) {
+        dbHelper.addProductToDB(listener, product);
     }
 
-    @Override
-    public void readRow() {
-
-    }
-
-    @Override
-    public void updateRow() {
-
-    }
-
-    @Override
-    public void deleteRow() {
-
-    }
 }

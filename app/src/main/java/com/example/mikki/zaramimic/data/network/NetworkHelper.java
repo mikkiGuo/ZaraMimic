@@ -32,13 +32,8 @@ public class NetworkHelper implements INetworkHelper {
     List<SubCategory> subCategoryList;
     List<Product> productList;
 
-
-    String url_productlist = "http://rjtmobile.com/ansari/shopingcart/androidapp/product_details.php?cid=107&scid=205&api_key=8d1297ce46af115ad60d30facf97d149&user_id=1395";
-
-
-
     private static final String TAG = "hello";
-    static SharedPreferences sharedPreferences;
+    public static SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     Context context;
 
@@ -64,9 +59,16 @@ public class NetworkHelper implements INetworkHelper {
         authenticateIDFromServer(listener, url_login);
     }
 
+    /**
+     * perform send email to server,
+     * if server response successful, return true
+     * if email doesn't exist, return false.
+     * @param listener
+     * @param email
+     */
     @Override
-    public void checkEmailFromServer(IDataManager.OnForgotPWListener listener, String email) {
-        listener.isEmailExisted(false);
+    public void sendEmailToServerForReset(IDataManager.OnForgotPWListener listener, String email) {
+        listener.isEmailExisted(true);
     }
 
     @Override
@@ -99,8 +101,7 @@ public class NetworkHelper implements INetworkHelper {
         String url_category = "http://rjtmobile.com/ansari/shopingcart/androidapp/cust_category.php?"
                 + "api_key=" + apiKey
                 + "&" + "user_id=" + userID;
-        editor.putString("cid", "107");
-        editor.commit();
+
 
         readCategoriesFromServer(listener, url_category);
 
@@ -122,10 +123,17 @@ public class NetworkHelper implements INetworkHelper {
 
     @Override
     public void getProductListFromServer(IDataManager.OnProductListListener listener) {
+        String cid = sharedPreferences.getString("cid", "107");
+        String scid = sharedPreferences.getString("scid", "205");
+        String apiKey = sharedPreferences.getString("api_key", "");
+        String userID = sharedPreferences.getString("user_id", "");
+
+        String url_productlist = "http://rjtmobile.com/ansari/shopingcart/androidapp/product_details.php?" +
+                "cid=" + cid + "&scid=" + scid + "&api_key=" + apiKey + "&user_id=" +userID;
 
         productList = new ArrayList<Product>();
 
-        readProductListFromServer(listener);
+        readProductListFromServer(listener, url_productlist);
     }
 
     /*-----------------------------------------------------------------------------------
@@ -293,7 +301,7 @@ public class NetworkHelper implements INetworkHelper {
                     listener.bindSubCategoriesToView(subCategoryList);
 
                 } catch (JSONException e) {
-                    Log.d(TAG, "onErrors: ");
+                    Log.d(TAG, "onErrors: " + e.toString());
                     e.printStackTrace();
 
                 }
@@ -303,6 +311,7 @@ public class NetworkHelper implements INetworkHelper {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                Log.d(TAG, "onErrorResponse: " + error.toString());
             }
         });
 
@@ -314,7 +323,7 @@ public class NetworkHelper implements INetworkHelper {
      * read product list from server using JsonObject Request
      * @param listener
      */
-    private void readProductListFromServer(final IDataManager.OnProductListListener listener) {
+    private void readProductListFromServer(final IDataManager.OnProductListListener listener, String url_productlist) {
         Log.d(TAG, "readProductListFromServer: ");
 
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
@@ -375,12 +384,6 @@ public class NetworkHelper implements INetworkHelper {
 
     }
 
-
-    //below methods is to test the mvp skelton connections.
-    @Override
-    public void testDb(IDataManager.OnCategoriesListener listener) {
-        listener.connectToSever();
-    }
 
 }
 

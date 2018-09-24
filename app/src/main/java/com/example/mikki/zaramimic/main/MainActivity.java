@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements IMainView {
         iMainPresenter = new MainPresenter(this);
         //iMainPresenter.onActivityCreated();
 
+        //packages name: authentication, products,
 
     }
 
@@ -32,7 +33,8 @@ public class MainActivity extends AppCompatActivity implements IMainView {
     }
 
 
-    @OnClick({R.id.btn_category, R.id.btn_product, R.id.btn_mtologin, R.id.btn_mtosignup, R.id.btn_toforgot})
+    @OnClick({R.id.btn_category, R.id.btn_product, R.id.btn_mtologin,
+            R.id.btn_mtosignup, R.id.btn_toforgot, R.id.btn_mtomyacct})
     public void onViewClicked(View view) {
         iMainPresenter.onButtonClicked(view);
 

@@ -3,21 +3,18 @@ package com.example.mikki.zaramimic.main;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
-import android.widget.Toast;
 
 import com.example.mikki.zaramimic.R;
-import com.example.mikki.zaramimic.category.CategoryActivity;
+import com.example.mikki.zaramimic.products.category.CategoryActivity;
 import com.example.mikki.zaramimic.data.DataManager;
 import com.example.mikki.zaramimic.data.IDataManager;
-import com.example.mikki.zaramimic.data.network.model.Category;
-import com.example.mikki.zaramimic.forgotpw.ForgotPWActivity;
-import com.example.mikki.zaramimic.login.LoginActivity;
-import com.example.mikki.zaramimic.productlist.ProductListActivity;
-import com.example.mikki.zaramimic.signup.SignUpActivity;
+import com.example.mikki.zaramimic.authentication.forgotpw.ForgotPWActivity;
+import com.example.mikki.zaramimic.authentication.login.LoginActivity;
+import com.example.mikki.zaramimic.myaccount.MyAccountActivity;
+import com.example.mikki.zaramimic.products.productlist.ProductListActivity;
+import com.example.mikki.zaramimic.authentication.signup.SignUpActivity;
 
-import java.util.List;
-
-public class MainPresenter implements IMainPresenter, IDataManager.OnResponseListener {
+public class MainPresenter implements IMainPresenter {
 
     IMainView iMainView;
     IDataManager iDataManager;
@@ -48,22 +45,15 @@ public class MainPresenter implements IMainPresenter, IDataManager.OnResponseLis
                 break;
             case R.id.btn_toforgot:
                 intent = new Intent(context, ForgotPWActivity.class);
+                break;
+            case R.id.btn_mtomyacct:
+                intent = new Intent(context, MyAccountActivity.class);
                 default:
                     break;
         }
         context.startActivity(intent);
     }
 
-    @Override
-    public void onActivityCreated() {
-        
-    }
 
-    /**
-     * below functionalites is for testing the connection of mvp framework
-     */
-    @Override
-    public void connectToDb() {
-        iMainView.showToast();
-    }
+
 }

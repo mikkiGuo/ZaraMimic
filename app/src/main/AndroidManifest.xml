@@ -19,11 +19,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".category.CategoryActivity" />
-        <activity android:name=".productlist.ProductListActivity" />
-        <activity android:name=".login.LoginActivity"></activity>
-        <activity android:name=".signup.SignUpActivity" />
-        <activity android:name=".forgotpw.ForgotPWActivity"></activity>
+        <activity android:name=".products.category.CategoryActivity" />
+        <activity android:name=".products.productlist.ProductListActivity" />
+        <activity android:name=".authentication.login.LoginActivity" />
+        <activity android:name=".authentication.signup.SignUpActivity" />
+        <activity android:name=".authentication.forgotpw.ForgotPWActivity" />
+        <activity android:name=".products.subcategory.SubCategoryActivity" />
+        <activity android:name=".products.productpage.ProductPageActivity" />
+        <activity android:name=".shoppingcart.ShoppingCartActivity" />
+        <activity android:name=".myaccount.MyAccountActivity" />
+        <activity android:name=".myaccount.profile.MyProfileActivity" />
+        <activity android:name=".myaccount.orderhistory.OrderHistoryActivity" />
+        <activity android:name=".authentication.resetpw.ResetPWActivity">
+        </activity>
     </application>
 
 </manifest>
