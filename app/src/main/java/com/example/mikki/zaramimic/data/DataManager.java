@@ -59,8 +59,28 @@ public class DataManager implements  IDataManager{
      ---------------------------------------------------------------------------------------------*/
 
     @Override
-    public void addProductToDB(OnProductListener listener, Product product) {
-        dbHelper.addProductToDB(listener, product);
+    public void addProductToShoppingCartDB(OnProductListener listener, Product product) {
+        dbHelper.addProductToShoppingCartDB(listener, product);
+    }
+
+    @Override
+    public void readProductListFromShoppingCartDB(OnShoppingCartListener listener) {
+        dbHelper.readProductListFromShoppingCartDB(listener);
+    }
+
+    @Override
+    public void deleteProductFromShoppingCartDB(OnShoppingCartListener listener) {
+        dbHelper.deleteProductFromShoppingCartDB(listener);
+    }
+
+    @Override
+    public void addProductToWishListDB(OnProductListener listener, Product product) {
+        dbHelper.addProductToWishListDB(listener, product);
+    }
+
+    @Override
+    public void readProductsFromWishListDB(OnWishListListener listener) {
+        dbHelper.readProductsFromWishListDB(listener);
     }
 
 }

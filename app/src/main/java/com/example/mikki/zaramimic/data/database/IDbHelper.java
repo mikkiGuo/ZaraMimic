@@ -5,6 +5,12 @@ import com.example.mikki.zaramimic.data.network.model.Product;
 
 
 public interface IDbHelper {
-    public void addProductToDB(IDataManager.OnProductListener listener, Product product);
+
+    public void addProductToShoppingCartDB(IDataManager.OnProductListener listener, Product product);
+    public void readProductListFromShoppingCartDB(IDataManager.OnShoppingCartListener listener);
+    public void deleteProductFromShoppingCartDB(IDataManager.OnShoppingCartListener listener);
+
+    public void addProductToWishListDB(IDataManager.OnProductListener listener, Product product);
+    public void readProductsFromWishListDB(IDataManager.OnWishListListener listener);
 
 }

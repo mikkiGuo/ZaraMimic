@@ -5,40 +5,37 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.mikki.zaramimic.data.database.model.ShoppingCartTableContract.ShoppingCartEntry;
+import com.example.mikki.zaramimic.data.database.model.WishListTableContractor;
 
 
 public class DatabaseOpenHelper extends SQLiteOpenHelper {
 
-    private static final String TEXT_TYPE = " TEXT";
-    private static final String COMMA_SEP = ",";
-    private static final String SQL_CREATE_ENTRIES =
-            "CREATE TABLE " + ShoppingCartEntry.TABLE_NAME + " (" +
-                    ShoppingCartEntry._ID + " INTEGER PRIMARY KEY," +
-                    ShoppingCartEntry.Pid + TEXT_TYPE + COMMA_SEP +
-                    ShoppingCartEntry.Pname + TEXT_TYPE + COMMA_SEP +
-                    ShoppingCartEntry.Pquantity + TEXT_TYPE + COMMA_SEP +
-                    ShoppingCartEntry.Pprice + TEXT_TYPE + COMMA_SEP +
-                    ShoppingCartEntry.Pdiscription + TEXT_TYPE + COMMA_SEP +
-                    ShoppingCartEntry.Pimage+TEXT_TYPE+  " )";
+    SqlQueries sqlQueries = SqlQueries.getInstance();
 
     private static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + ShoppingCartEntry.TABLE_NAME;
-
-
-
+    private static final String SQL_DELETE_ENTRIES2 =
+            "DROP TABLE IF EXISTS " + WishListTableContractor.WishListEntry.TABLE_NAME;
 
     public DatabaseOpenHelper(Context context) {
-        super(context,"zaraDatabase",null, 1);
+        super(context,"zaraDatabase",null, 2);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(SQL_CREATE_ENTRIES);
+        String shoppingCartTable = sqlQueries.createShoppingCartTable();
+        db.execSQL(shoppingCartTable);
+        String wishListTable = sqlQueries.createWishListTable();
+        db.execSQL(wishListTable);
 
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+    public void onUpgrade(SQLiteDatabase db, int i, int i1) {
+        db.execSQL(SQL_DELETE_ENTRIES);
+        onCreate(db);
 
+        db.execSQL(SQL_DELETE_ENTRIES2);
+        onCreate(db);
     }
 }

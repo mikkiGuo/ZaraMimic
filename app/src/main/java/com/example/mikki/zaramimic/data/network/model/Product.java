@@ -5,6 +5,7 @@ import android.os.Parcelable;
 
 public class Product implements Parcelable{
     String id, pname, quantity, prize, discription, image;
+    int order_quantity;
 
     public Product(String id, String pname, String quantity, String prize, String discription, String image) {
         this.id = id;
@@ -13,6 +14,7 @@ public class Product implements Parcelable{
         this.prize = prize;
         this.discription = discription;
         this.image = image;
+        this.order_quantity = 0;
     }
 
     public String getId() {
@@ -39,10 +41,17 @@ public class Product implements Parcelable{
         return image;
     }
 
+    public int getOrder_quantity() {
+        return order_quantity;
+    }
+
+    public void setOrder_quantity(int order_quantity) {
+        this.order_quantity = order_quantity;
+    }
 
     /*---------------------------------------------------------------------------------------------
-                            Parcelable Methods
-     --------------------------------------------------------------------------------------------*/
+                                Parcelable Methods
+         --------------------------------------------------------------------------------------------*/
     protected Product(Parcel in) {
         id = in.readString();
         pname = in.readString();

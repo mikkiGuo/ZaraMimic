@@ -43,4 +43,12 @@
         android:layout_below="@+id/tv_pprice"
         android:text="ADD" />
 
+    <ImageView
+        android:id="@+id/icon_pwishlist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/tv_ppname"
+        android:layout_centerHorizontal="true"
+        app:srcCompat="@android:drawable/btn_star_big_on" />
+
 </RelativeLayout>

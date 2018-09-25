@@ -9,16 +9,21 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.Adapter;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.mikki.zaramimic.R;
+import com.example.mikki.zaramimic.authentication.login.LoginActivity;
 import com.example.mikki.zaramimic.data.network.model.Category;
 import com.example.mikki.zaramimic.products.subcategory.SubCategoryActivity;
+import com.example.mikki.zaramimic.shoppingcart.ShoppingCartActivity;
+import com.example.mikki.zaramimic.wishlist.WishListActivity;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 import static com.example.mikki.zaramimic.data.network.NetworkHelper.sharedPreferences;
 
@@ -72,4 +77,24 @@ public class CategoryActivity extends AppCompatActivity implements ICategoryView
 
     }
 
+    @OnClick({R.id.tv_logout,R.id.icon_search, R.id.icon_towishlist, R.id.icon_tocart})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.tv_logout:
+                sharedPreferences.edit().clear().commit();
+                Intent intent2 = new Intent(CategoryActivity.this, LoginActivity.class);
+                startActivity(intent2);
+                break;
+            case R.id.icon_search:
+                break;
+            case R.id.icon_towishlist:
+                Intent intent = new Intent(CategoryActivity.this, WishListActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.icon_tocart:
+                Intent intent1 = new Intent(CategoryActivity.this, ShoppingCartActivity.class);
+                startActivity(intent1);
+                break;
+        }
+    }
 }

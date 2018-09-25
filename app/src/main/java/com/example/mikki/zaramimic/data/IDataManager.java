@@ -11,13 +11,7 @@ import java.util.List;
 
 public interface IDataManager extends IDbHelper, INetworkHelper {
 
-    interface OnResponseListener{ /// switch board
-        public void connectToDb();
-    }
 
-    interface OnProductListener{
-        void isAddedToDB(boolean result);
-    }
 
     interface OnSignUpListener{
         public void isSignUpSuccessful(boolean result);
@@ -51,5 +45,20 @@ public interface IDataManager extends IDbHelper, INetworkHelper {
         public void bindProductsToView(List<Product> productList);
     }
 
+    /*---------------------------------------------------------------------------------------------
+                                LOCAL DATABASE LISTENERS
+     ---------------------------------------------------------------------------------------------*/
+
+    interface OnProductListener{
+        void isAddedToDB(boolean result);
+    }
+
+    interface OnShoppingCartListener{
+        void bindProductListFromDBToView(List<Product> productList);
+    }
+
+    interface OnWishListListener{
+        void bindProductsFromDBtoView(List<Product> productList);
+    }
 
 }

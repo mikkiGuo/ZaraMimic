@@ -45,12 +45,15 @@ public class ProductPageActivity extends AppCompatActivity implements IProductPa
         Picasso.get().load(p.getImage()).into(imageView);
     }
 
-    @OnClick({R.id.btn_addtocart})
+    @OnClick({R.id.btn_addtocart, R.id.icon_pwishlist})
     public void onViewClicked(View view) {
         switch (view.getId()){
             case R.id.btn_addtocart:
                 iProductPagePresenter.onBtnAddClickHandler(p);
                 break;
+            case R.id.icon_pwishlist:
+                iProductPagePresenter.onWishlistClickHandler(p);
+
                 default:break;
         }
     }

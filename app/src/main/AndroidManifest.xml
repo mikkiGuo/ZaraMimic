@@ -30,8 +30,8 @@
         <activity android:name=".myaccount.MyAccountActivity" />
         <activity android:name=".myaccount.profile.MyProfileActivity" />
         <activity android:name=".myaccount.orderhistory.OrderHistoryActivity" />
-        <activity android:name=".authentication.resetpw.ResetPWActivity">
-        </activity>
+        <activity android:name=".authentication.resetpw.ResetPWActivity"></activity>
+        <activity android:name=".wishlist.WishListActivity"></activity>
     </application>
 
 </manifest>

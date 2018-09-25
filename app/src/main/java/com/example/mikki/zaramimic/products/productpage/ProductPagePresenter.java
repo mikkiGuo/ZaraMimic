@@ -1,9 +1,5 @@
 package com.example.mikki.zaramimic.products.productpage;
 
-import android.content.Context;
-import android.view.View;
-
-import com.example.mikki.zaramimic.R;
 import com.example.mikki.zaramimic.data.DataManager;
 import com.example.mikki.zaramimic.data.IDataManager;
 import com.example.mikki.zaramimic.data.network.model.Product;
@@ -23,7 +19,12 @@ public class ProductPagePresenter implements IProductPagePresenter, IDataManager
 
     @Override
     public void onBtnAddClickHandler(Product p) {
-        iDataManager.addProductToDB(this, p);
+        iDataManager.addProductToShoppingCartDB(this, p);
+    }
+
+    @Override
+    public void onWishlistClickHandler(Product p) {
+        iDataManager.addProductToWishListDB(this, p);
     }
 
 
