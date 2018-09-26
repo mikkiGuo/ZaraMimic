@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface IProductListView {
 
-    public void showToast(String s);
-    public void showProductList(List<Product> productList);
+    void showToast(String s);
+    void showProductList(List<Product> productList);
 
 }

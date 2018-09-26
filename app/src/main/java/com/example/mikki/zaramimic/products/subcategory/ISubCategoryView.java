@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface ISubCategoryView {
 
-    public void showSubCategoyList(List<SubCategory> subCategoryList);
+    void showSubCategoyList(List<SubCategory> subCategoryList);
 }

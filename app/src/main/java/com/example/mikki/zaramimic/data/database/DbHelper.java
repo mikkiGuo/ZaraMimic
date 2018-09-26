@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.example.mikki.zaramimic.data.IDataManager;
 import com.example.mikki.zaramimic.data.database.model.ShoppingCartTableContract.ShoppingCartEntry;
@@ -20,7 +19,7 @@ public class DbHelper implements IDbHelper{
     private static final String TAG = "DbHelper";
     SQLiteDatabase database;
     DatabaseOpenHelper openHelper;
-
+    SqlQueries sqlQueries = SqlQueries.getInstance();
 
     public DbHelper(Context context){
         openHelper = new DatabaseOpenHelper(context);
@@ -37,11 +36,22 @@ public class DbHelper implements IDbHelper{
         values.put(ShoppingCartEntry.Pprice, product.getPrize());
         values.put(ShoppingCartEntry.Pdiscription, product.getDiscription());
         values.put(ShoppingCartEntry.Pimage, product.getImage());
+        values.put(ShoppingCartEntry.Porder_quantity,product.getOrder_quantity());
 
+        String queries = sqlQueries.readRowFromShoppingCartTable(product.getId());
+        Log.d(TAG, "addProductToShoppingCartDB: " + queries);
 
-        database.insert(ShoppingCartEntry.TABLE_NAME,null,values);
-        Log.d(TAG, "addProductToShoppingCartDB: " + values.toString());
+        Cursor cursor = database.rawQuery(queries,null);
+        if(cursor.moveToLast()){
+            Log.d(TAG, "product existed: ");
+            String originalquantity = cursor.getString(cursor.getColumnIndex(ShoppingCartEntry.Porder_quantity));
+            updatePorderQuantityInShoppingCartTable(originalquantity, product.getId());
 
+        }else{
+            Log.d(TAG, "product not existed, create one: ");
+            database.insert(ShoppingCartEntry.TABLE_NAME,null,values);
+            Log.d(TAG, "addProductToShoppingCartDB: " + values.toString());
+        }
         listener.isAddedToDB(true);
     }
 
@@ -59,8 +69,10 @@ public class DbHelper implements IDbHelper{
                 String pprice = cursor.getString(cursor.getColumnIndex(ShoppingCartEntry.Pprice));
                 String pquantity = cursor.getString(cursor.getColumnIndex(ShoppingCartEntry.Pquantity));
                 String pimage = cursor.getString(cursor.getColumnIndex(ShoppingCartEntry.Pimage));
+                String porder_quan = cursor.getString(cursor.getColumnIndex(ShoppingCartEntry.Porder_quantity));
 
                 Product p = new Product(pid, pname, pquantity, pprice, pdiscription, pimage);
+                p.setOrder_quantity(Integer.parseInt(porder_quan));
                 productList.add(p);
 
             } while (cursor.moveToNext());
@@ -71,8 +83,13 @@ public class DbHelper implements IDbHelper{
     }
 
     @Override
-    public void deleteProductFromShoppingCartDB(IDataManager.OnShoppingCartListener listener) {
-
+    public void deleteProductFromShoppingCartDB(IDataManager.OnShoppingCartListener listener, Product product) {
+        String selection = ShoppingCartEntry.Pid + " LIKE ?";
+        // Specify arguments in placeholder order.
+        String[] selectionArgs = { product.getId() };
+        // Issue SQL statement.
+        int deletedRows = database.delete(ShoppingCartEntry.TABLE_NAME, selection, selectionArgs);
+        listener.isProductDeleted(true);
     }
 
     @Override
@@ -84,7 +101,6 @@ public class DbHelper implements IDbHelper{
         values.put(WishListEntry.Pprice, product.getPrize());
         values.put(WishListEntry.Pdiscription, product.getDiscription());
         values.put(WishListEntry.Pimage, product.getImage());
-
 
         database.insert(WishListEntry.TABLE_NAME,null,values);
         Log.d(TAG, "addProductToWishListDB: " + values.toString());
@@ -116,5 +132,22 @@ public class DbHelper implements IDbHelper{
         }
     }
 
+    @Override
+    public void updateUserProfileDB(IDataManager.OnProfileUpdateListener listener) {
+
+    }
+
+    /*---------------------------------------------------------------------------------------------
+                              Private Methods - Override Methods Helper
+     --------------------------------------------------------------------------------------------*/
+
+    private void updatePorderQuantityInShoppingCartTable(String originalquantity, String pid) {
+        int quantity = Integer.parseInt(originalquantity);
+        quantity++;
+        String queries2
+                = sqlQueries.updatePorderQuantityInShoppingCartTable(pid, String.valueOf(quantity));
+        database.execSQL(queries2);
+
+    }
 
 }

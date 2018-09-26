@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface IWishListView {
 
-    public void showListOnView(List<Product> productList);
+    void showListOnView(List<Product> productList);
 }

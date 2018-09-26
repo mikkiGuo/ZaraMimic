@@ -1,20 +1,22 @@
 package com.example.mikki.zaramimic.products.productlist;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.Adapter;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.mikki.zaramimic.DotLoaderActivity;
 import com.example.mikki.zaramimic.R;
 import com.example.mikki.zaramimic.data.network.model.Product;
 import com.example.mikki.zaramimic.products.productpage.ProductPageActivity;
-import com.example.mikki.zaramimic.shoppingcart.ShoppingCartActivity;
+import com.example.mikki.zaramimic.orders.shoppingcart.ShoppingCartActivity;
 import com.example.mikki.zaramimic.wishlist.WishListActivity;
 
 import java.util.List;
@@ -22,12 +24,14 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import steelkiwi.com.library.DotsLoaderView;
 
 public class ProductListActivity extends AppCompatActivity implements IProductListView {
 
     private static final String TAG = "ProductListActivity";
     IProductListPresenter iProductListPresenter;
     Adapter adapter;
+    DotsLoaderView dotsLoaderView;
 
     @BindView(R.id.rv_productlist)
     RecyclerView recyclerView;
@@ -39,16 +43,50 @@ public class ProductListActivity extends AppCompatActivity implements IProductLi
         ButterKnife.bind(this);
 
         iProductListPresenter = new ProductListPresenter(this);
-        iProductListPresenter.onActivityCreated();
-        recyclerView = findViewById(R.id.rv_productlist);
+        //iProductListPresenter.onActivityCreated();
+        //recyclerView = findViewById(R.id.rv_productlist);
+        /*Intent intent = new Intent(this, DotLoaderActivity.class);
+        startActivity(intent);*/
+        dotsLoaderView = findViewById(R.id.dotsLoader);
+        downloadData();
+
 
     }
+    private void downloadData() {
+        AsyncTask<String,String,String> asyncTask = new AsyncTask<String, String, String>() {
+            @Override
+            protected void onPreExecute() {
+                dotsLoaderView.show();
+            }
+
+            @Override
+            protected String doInBackground(String... strings) {
+                iProductListPresenter.onActivityCreated();
+                /*try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }*/
+                return "done";
+            }
+
+            @Override
+            protected void onPostExecute(String s) {
+                if(s.equals("done")){
+                    dotsLoaderView.hide();
+                }
+            }
+        };
+        asyncTask.execute();
+    }
+
 
 
     @Override
     public void showProductList(List<Product> productList) {
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setLayoutManager(new GridLayoutManager(this,2));
+        /*RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);*/
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
         Product p = productList.get(0);

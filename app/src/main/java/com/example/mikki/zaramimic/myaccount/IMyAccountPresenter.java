@@ -4,5 +4,5 @@ import android.view.View;
 
 public interface IMyAccountPresenter {
 
-    public void onViewClickHandler(View view);
+   
 }

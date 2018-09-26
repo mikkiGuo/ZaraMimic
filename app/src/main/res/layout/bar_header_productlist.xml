@@ -27,16 +27,16 @@
     <ImageView
         android:id="@+id/icon_towishlist"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginLeft="5dp"
-        android:layout_weight="0"
-        app:srcCompat="@android:drawable/star_big_on" />
+        android:layout_weight="0.5"
+        app:srcCompat="@drawable/ic_bookmark_border_black_24dp" />
 
     <ImageView
         android:id="@+id/icon_tocart"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_weight="0.5"
-        app:srcCompat="?android:attr/textSelectHandle" />
+        android:layout_weight="0"
+        app:srcCompat="@drawable/ic_card_travel_black_24dp" />
 
 </LinearLayout>

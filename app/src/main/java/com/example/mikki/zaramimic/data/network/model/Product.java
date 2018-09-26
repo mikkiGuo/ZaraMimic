@@ -14,8 +14,30 @@ public class Product implements Parcelable{
         this.prize = prize;
         this.discription = discription;
         this.image = image;
-        this.order_quantity = 0;
+        this.order_quantity = 1;
     }
+
+    protected Product(Parcel in) {
+        id = in.readString();
+        pname = in.readString();
+        quantity = in.readString();
+        prize = in.readString();
+        discription = in.readString();
+        image = in.readString();
+        order_quantity = in.readInt();
+    }
+
+    public static final Creator<Product> CREATOR = new Creator<Product>() {
+        @Override
+        public Product createFromParcel(Parcel in) {
+            return new Product(in);
+        }
+
+        @Override
+        public Product[] newArray(int size) {
+            return new Product[size];
+        }
+    };
 
     public String getId() {
         return id;
@@ -48,30 +70,13 @@ public class Product implements Parcelable{
     public void setOrder_quantity(int order_quantity) {
         this.order_quantity = order_quantity;
     }
-
-    /*---------------------------------------------------------------------------------------------
-                                Parcelable Methods
-         --------------------------------------------------------------------------------------------*/
-    protected Product(Parcel in) {
-        id = in.readString();
-        pname = in.readString();
-        quantity = in.readString();
-        prize = in.readString();
-        discription = in.readString();
-        image = in.readString();
+    public void addOrder_quantity(){
+        this.order_quantity++;
+    }
+    public void subtractOrder_quantity(){
+        this.order_quantity--;
     }
 
-    public static final Creator<Product> CREATOR = new Creator<Product>() {
-        @Override
-        public Product createFromParcel(Parcel in) {
-            return new Product(in);
-        }
-
-        @Override
-        public Product[] newArray(int size) {
-            return new Product[size];
-        }
-    };
     @Override
     public int describeContents() {
         return 0;
@@ -85,5 +90,11 @@ public class Product implements Parcelable{
         dest.writeString(prize);
         dest.writeString(discription);
         dest.writeString(image);
+        dest.writeInt(order_quantity);
     }
+
+    /*---------------------------------------------------------------------------------------------
+                                Parcelable Methods
+         --------------------------------------------------------------------------------------------*/
+
 }

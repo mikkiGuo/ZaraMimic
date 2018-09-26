@@ -1,18 +1,12 @@
 package com.example.mikki.zaramimic.products.category;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.util.Log;
 
-import com.example.mikki.zaramimic.products.subcategory.SubCategoryActivity;
 import com.example.mikki.zaramimic.data.DataManager;
 import com.example.mikki.zaramimic.data.IDataManager;
 import com.example.mikki.zaramimic.data.network.model.Category;
 
 import java.util.List;
-
-import static com.example.mikki.zaramimic.data.network.NetworkHelper.sharedPreferences;
 
 public class CategoryPresenter implements ICategoryPresenter, IDataManager.OnCategoriesListener
 {

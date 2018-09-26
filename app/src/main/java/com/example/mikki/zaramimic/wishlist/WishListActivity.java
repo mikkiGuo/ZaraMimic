@@ -14,6 +14,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class WishListActivity extends AppCompatActivity implements IWishListView {
 
@@ -45,5 +46,10 @@ public class WishListActivity extends AppCompatActivity implements IWishListView
 
         adapter = new WishListAdapter(productList);
         rvWishlist.setAdapter(adapter);
+    }
+
+    @OnClick(R.id.icon_close)
+    public void onViewClicked() {
+        finish();
     }
 }

@@ -4,7 +4,6 @@ import android.view.View;
 
 public interface ILoginPresenter {
 
-    public void onClickHandler(View view);
-    public void onBtnLoginClickHandler();
+    void onBtnLoginClickHandler();
 
 }

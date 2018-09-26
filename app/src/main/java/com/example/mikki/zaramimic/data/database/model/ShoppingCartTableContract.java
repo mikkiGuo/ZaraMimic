@@ -12,10 +12,11 @@ public class ShoppingCartTableContract {
         public static final String TABLE_NAME = "ShoppingCart";
         public static final String Pid = "pID";
         public static final String Pname = "pName";
-        public static final String Pquantity = "pQuantity";
+        public static final String Pquantity = "pStockQuantity";
         public static final String Pprice = "pPrice";
         public static final String Pdiscription = "pDis";
         public static final String Pimage = "pImage";
+        public static final String Porder_quantity = "pOrderQuantity";
 
     }
 

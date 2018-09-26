@@ -14,5 +14,6 @@ public class WishListTableContractor {
         public static final String Pprice = "pPrice";
         public static final String Pdiscription = "pDis";
         public static final String Pimage = "pImage";
+        public static final String Porder_quan = "pOrderQuantity";
     }
 }

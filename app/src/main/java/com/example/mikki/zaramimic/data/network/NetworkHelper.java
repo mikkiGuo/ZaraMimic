@@ -11,7 +11,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.example.mikki.zaramimic.data.IDataManager;
-import com.example.mikki.zaramimic.data.network.model.AppController;
+import com.example.mikki.zaramimic.data.AppController;
 import com.example.mikki.zaramimic.data.network.model.Category;
 import com.example.mikki.zaramimic.data.network.model.Login;
 import com.example.mikki.zaramimic.data.network.model.Product;
@@ -32,13 +32,12 @@ public class NetworkHelper implements INetworkHelper {
     List<SubCategory> subCategoryList;
     List<Product> productList;
 
+
     private static final String TAG = "hello";
     public static SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     Context context;
 
-    //tempory for testing purpose
-    //final static List<String> data = new ArrayList<>();
 
     public NetworkHelper(Context context) {
         this.context = context;
@@ -71,6 +70,7 @@ public class NetworkHelper implements INetworkHelper {
         listener.isEmailExisted(true);
     }
 
+
     @Override
     public void userRegistration(IDataManager.OnSignUpListener listener, UserProfile profile) {
         String url_signup = "http://rjtmobile.com/aamir/e-commerce/android-app/shop_reg.php?"
@@ -80,7 +80,7 @@ public class NetworkHelper implements INetworkHelper {
                 + "&" + "email=" + profile.getEmail()
                 + "&" + "mobile=" + profile.getMobile()
                 + "&" + "password=" + profile.getPassword();
-
+        editor.putString("address", profile.getAddress());
         registerUserToServer(listener, url_signup);
 
     }
@@ -157,10 +157,19 @@ public class NetworkHelper implements INetworkHelper {
                     JSONObject userdata = response.getJSONObject(0);
                     String userID = userdata.getString("id");
                     String apiKey = userdata.getString("appapikey ");
+                    String email = userdata.getString("email");
+                    String mobile = userdata.getString("mobile");
+                    String fname = userdata.getString("firstname");
+                    String lname = userdata.getString("lastname");
+
                     Log.d(TAG, "appapikey :\n" + apiKey);
 
                     editor.putString("api_key", apiKey);
                     editor.putString("user_id", userID);
+                    editor.putString("fname", fname);
+                    editor.putString("lname", lname);
+                    editor.putString("email", email);
+                    editor.putString("mobile", mobile);
                     editor.commit();
 
                     listener.isAuthorized(true);
@@ -198,6 +207,7 @@ public class NetworkHelper implements INetworkHelper {
                 Log.d(TAG, "onResponseSignup: " + response.toString());
 
                 if(response.toString().equals("successfully registered") ){
+
                     Log.d(TAG, "" + response.toString());
                     listener.isSignUpSuccessful(true);
                 }else{

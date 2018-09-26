@@ -4,8 +4,8 @@ import com.example.mikki.zaramimic.data.network.model.UserProfile;
 
 public interface ISignUpView {
 
-    public UserProfile getInputProfileData();
+    UserProfile getInputProfileData();
 
-    public void showError();
+    void showError();
 
 }

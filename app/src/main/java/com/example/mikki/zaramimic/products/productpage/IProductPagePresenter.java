@@ -1,11 +1,9 @@
 package com.example.mikki.zaramimic.products.productpage;
 
-import android.view.View;
-
 import com.example.mikki.zaramimic.data.network.model.Product;
 
 public interface IProductPagePresenter {
 
-    public void onBtnAddClickHandler(Product p);
-    public void onWishlistClickHandler(Product p);
+    void onBtnAddClickHandler(Product p);
+    void onWishlistClickHandler(Product p);
 }

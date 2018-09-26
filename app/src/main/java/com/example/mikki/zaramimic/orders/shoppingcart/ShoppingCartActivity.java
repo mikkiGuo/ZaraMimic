@@ -1,15 +1,18 @@
-package com.example.mikki.zaramimic.shoppingcart;
+package com.example.mikki.zaramimic.orders.shoppingcart;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.example.mikki.zaramimic.R;
 import com.example.mikki.zaramimic.data.network.model.Product;
+import com.example.mikki.zaramimic.orders.order.OrderActivity;
+import com.example.mikki.zaramimic.orders.orderconfirmation.OrderConfirmActivity;
 
 import java.util.List;
 
@@ -23,6 +26,8 @@ public class ShoppingCartActivity extends AppCompatActivity implements IShopping
     @BindView(R.id.rv_shopcart)
     RecyclerView rvShopcart;
     RecyclerView.Adapter adapter;
+    @BindView(R.id.tv_sp_total)
+    TextView tvSpTotal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,17 +42,23 @@ public class ShoppingCartActivity extends AppCompatActivity implements IShopping
 
     @Override
     public void showListOnView(List<Product> productList) {
-        Toast.makeText(this, "" + productList.get(0).getPname(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "" + productList.get(0).getPname(), Toast.LENGTH_SHORT).show();
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         rvShopcart.setLayoutManager(layoutManager);
         rvShopcart.setItemAnimator(new DefaultItemAnimator());
 
-        adapter = new ShoppingCartListAdapter(productList);
+        adapter = new ShoppingCartListAdapter(productList, new ShoppingCartListAdapter.OnItemClickListener() {
+            @Override
+            public void onDeleteClick(Product product) {
+                iShoppingCartPresenter.onDeleteClickHandler(product);
+            }
+        });
+
         rvShopcart.setAdapter(adapter);
 
     }
 
-    @OnClick({R.id.icon_close, R.id.tv_cart_edit})
+    @OnClick({R.id.icon_close, R.id.tv_cart_edit, R.id.btn_buy})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.icon_close:
@@ -55,6 +66,12 @@ public class ShoppingCartActivity extends AppCompatActivity implements IShopping
                 break;
             case R.id.tv_cart_edit:
                 break;
+            case R.id.btn_buy:
+                Intent intent = new Intent(this, OrderActivity.class);
+                startActivity(intent);
+                break;
         }
     }
+
+
 }

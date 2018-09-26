@@ -17,13 +17,6 @@ public class LoginPresenter implements ILoginPresenter, IDataManager.OnLoginList
         iDataManager = new DataManager(loginActivity);
     }
 
-    /**
-     * handle all click command from login activity in this method
-     * @param view
-     */
-    @Override
-    public void onClickHandler(View view) { }
-
     @Override
     public void onBtnLoginClickHandler() {
         iDataManager.checkLoginValidation(this, iLoginView.getLoginData());

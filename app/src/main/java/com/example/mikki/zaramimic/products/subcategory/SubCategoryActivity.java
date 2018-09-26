@@ -2,7 +2,7 @@ package com.example.mikki.zaramimic.products.subcategory;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Adapter;
+import android.util.DisplayMetrics;
 import android.widget.ListView;
 
 import com.example.mikki.zaramimic.R;
@@ -27,8 +27,17 @@ public class SubCategoryActivity extends AppCompatActivity implements ISubCatego
         setContentView(R.layout.activity_sub_category);
         ButterKnife.bind(this);
 
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+
+        int width = dm.widthPixels;
+        int height = dm.heightPixels;
+        getWindow().setLayout((int)(width*.8), (int)(height*.5));
+
         iSubCategoryPresenter = new SubCategoryPresenter(this);
         iSubCategoryPresenter.onActivityCreated();
+
+
 
 
     }

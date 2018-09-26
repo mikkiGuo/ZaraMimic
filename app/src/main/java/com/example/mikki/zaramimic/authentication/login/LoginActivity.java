@@ -56,7 +56,6 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
             default:
                 break;
         }
-        iLoginPresenter.onClickHandler(view);
     }
 
 

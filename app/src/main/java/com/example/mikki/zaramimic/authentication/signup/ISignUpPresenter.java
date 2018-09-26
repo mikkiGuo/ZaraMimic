@@ -4,5 +4,5 @@ import android.view.View;
 
 public interface ISignUpPresenter {
 
-    public void onClickHandler(View view);
+    void onClickHandler(View view);
 }

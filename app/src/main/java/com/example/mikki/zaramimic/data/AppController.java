@@ -1,4 +1,4 @@
-package com.example.mikki.zaramimic.data.network.model;
+package com.example.mikki.zaramimic.data;
 
 import android.app.Application;
 import android.text.TextUtils;

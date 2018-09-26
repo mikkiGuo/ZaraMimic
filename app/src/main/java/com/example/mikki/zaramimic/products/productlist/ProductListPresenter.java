@@ -1,12 +1,8 @@
 package com.example.mikki.zaramimic.products.productlist;
 
-import android.content.Context;
-import android.content.Intent;
-
 import com.example.mikki.zaramimic.data.DataManager;
 import com.example.mikki.zaramimic.data.IDataManager;
 import com.example.mikki.zaramimic.data.network.model.Product;
-import com.example.mikki.zaramimic.products.productpage.ProductPageActivity;
 
 import java.util.List;
 

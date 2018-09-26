@@ -12,38 +12,38 @@ import java.util.List;
 public interface IDataManager extends IDbHelper, INetworkHelper {
 
 
-
     interface OnSignUpListener{
-        public void isSignUpSuccessful(boolean result);
+        void isSignUpSuccessful(boolean result);
     }
 
     interface OnLoginListener{
 
-        public void isAuthorized(boolean result);
+        void isAuthorized(boolean result);
 
     }
 
     interface OnForgotPWListener{
-        public void isEmailExisted(boolean result);
+        void isEmailExisted(boolean result);
     }
 
     interface OnResetPWListener{
-        public void isResetSuccessful(boolean result);
+        void isResetSuccessful(boolean result);
     }
 
     interface OnCategoriesListener{
 
-        public void bindCategoriesToView(List<Category> categoryList);
+        void bindCategoriesToView(List<Category> categoryList);
 
     }
 
     interface OnSubCategoriesListener{
-        public void bindSubCategoriesToView(List<SubCategory> subCategories);
+        void bindSubCategoriesToView(List<SubCategory> subCategories);
     }
 
     interface OnProductListListener{
-        public void bindProductsToView(List<Product> productList);
+        void bindProductsToView(List<Product> productList);
     }
+
 
     /*---------------------------------------------------------------------------------------------
                                 LOCAL DATABASE LISTENERS
@@ -55,10 +55,15 @@ public interface IDataManager extends IDbHelper, INetworkHelper {
 
     interface OnShoppingCartListener{
         void bindProductListFromDBToView(List<Product> productList);
+        void isProductDeleted(boolean result);
     }
 
     interface OnWishListListener{
         void bindProductsFromDBtoView(List<Product> productList);
+    }
+
+    interface OnProfileUpdateListener{
+        void isUpateSuccessful(boolean result);
     }
 
 }

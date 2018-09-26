@@ -1,17 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".products.category.CategoryActivity">
+    tools:context=".products.category.CategoryActivity"
+    tools:layout_editor_absoluteY="25dp">
 
-    <include layout="@layout/bar_header_category"/>
+    <steelkiwi.com.library.DotsLoaderView
+        android:id="@+id/dotsLoader"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        app:dlv_item_drawable="@drawable/circle_background"
+        app:dlv_line_color="@color/colorAccent"
+        >
+    </steelkiwi.com.library.DotsLoaderView>
 
-    <android.support.v7.widget.RecyclerView
+    <include layout="@layout/bar_header_category" />
+
+    <fragment
+        android:id="@+id/fragment"
+        android:name="com.example.mikki.zaramimic.products.category.CategoryFragment"
+        android:layout_width="match_parent"
+        android:layout_height="570dp" />
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tablay_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="521dp">
+
+        <android.support.design.widget.TabItem
+            android:id="@+id/tab_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CORNER shops" />
+
+        <android.support.design.widget.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="COLLECTION" />
+
+        <android.support.design.widget.TabItem
+            android:id="@+id/tab_myacct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="My Account" />
+    </android.support.design.widget.TabLayout>
+
+    <!--<android.support.v7.widget.RecyclerView
         android:id="@+id/rv_category_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.RecyclerView>-->
+
 
 </LinearLayout>

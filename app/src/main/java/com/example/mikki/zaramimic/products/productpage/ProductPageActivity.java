@@ -1,5 +1,6 @@
 package com.example.mikki.zaramimic.products.productpage;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.Toast;
 
 import com.example.mikki.zaramimic.R;
 import com.example.mikki.zaramimic.data.network.model.Product;
+import com.example.mikki.zaramimic.orders.shoppingcart.ShoppingCartActivity;
 import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
@@ -45,7 +47,7 @@ public class ProductPageActivity extends AppCompatActivity implements IProductPa
         Picasso.get().load(p.getImage()).into(imageView);
     }
 
-    @OnClick({R.id.btn_addtocart, R.id.icon_pwishlist})
+    @OnClick({R.id.btn_addtocart, R.id.icon_pwishlist, R.id.icon_pg_close, R.id.icon_pg_cart})
     public void onViewClicked(View view) {
         switch (view.getId()){
             case R.id.btn_addtocart:
@@ -53,6 +55,14 @@ public class ProductPageActivity extends AppCompatActivity implements IProductPa
                 break;
             case R.id.icon_pwishlist:
                 iProductPagePresenter.onWishlistClickHandler(p);
+                break;
+            case R.id.icon_pg_close:
+                finish();
+                break;
+            case R.id.icon_pg_cart:
+                Intent intent = new Intent(ProductPageActivity.this, ShoppingCartActivity.class);
+                startActivity(intent);
+                break;
 
                 default:break;
         }

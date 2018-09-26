@@ -18,30 +18,4 @@ public class MyAccountPresenter implements IMyAccountPresenter {
     }
 
 
-    @Override
-    public void onViewClickHandler(View view) {
-        Intent intent = null;
-        switch (view.getId()) {
-            case R.id.btn_myacct_ordersplaced:
-                intent = new Intent(context, OrderHistoryActivity.class);
-                break;
-
-            case R.id.btn_myacct_myinfo:
-                intent = new Intent(context, MyProfileActivity.class);
-                break;
-
-            case R.id.btn_myacct_paycards:
-                break;
-
-            case R.id.btn_myacct_contactus:
-                break;
-            case R.id.btn_myacct_help:
-                break;
-            case R.id.btn_myacct_settings:
-                break;
-            case R.id.btn_logout:
-                break;
-        }
-        context.startActivity(intent);
-    }
 }

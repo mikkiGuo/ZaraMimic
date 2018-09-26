@@ -18,7 +18,7 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
             "DROP TABLE IF EXISTS " + WishListTableContractor.WishListEntry.TABLE_NAME;
 
     public DatabaseOpenHelper(Context context) {
-        super(context,"zaraDatabase",null, 2);
+        super(context,"zaraDatabase",null, 4);
     }
 
     @Override
@@ -27,6 +27,8 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
         db.execSQL(shoppingCartTable);
         String wishListTable = sqlQueries.createWishListTable();
         db.execSQL(wishListTable);
+        String userProfileTable = sqlQueries.createUserProfileTable();
+        db.execSQL(userProfileTable);
 
     }
 

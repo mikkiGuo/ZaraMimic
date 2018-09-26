@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.mikki.zaramimic">
+
+    <uses-sdk tools:overrideLibrary="steelkiwi.com.library" />
 
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".data.network.model.AppController"
+        android:name=".data.AppController"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -24,14 +27,24 @@
         <activity android:name=".authentication.login.LoginActivity" />
         <activity android:name=".authentication.signup.SignUpActivity" />
         <activity android:name=".authentication.forgotpw.ForgotPWActivity" />
-        <activity android:name=".products.subcategory.SubCategoryActivity" />
+        <activity
+            android:name=".products.subcategory.SubCategoryActivity"
+            android:theme="@style/AppTheme.CustomTheme" />
         <activity android:name=".products.productpage.ProductPageActivity" />
-        <activity android:name=".shoppingcart.ShoppingCartActivity" />
+        <activity android:name=".orders.shoppingcart.ShoppingCartActivity" />
         <activity android:name=".myaccount.MyAccountActivity" />
         <activity android:name=".myaccount.profile.MyProfileActivity" />
         <activity android:name=".myaccount.orderhistory.OrderHistoryActivity" />
-        <activity android:name=".authentication.resetpw.ResetPWActivity"></activity>
-        <activity android:name=".wishlist.WishListActivity"></activity>
+        <activity android:name=".authentication.resetpw.ResetPWActivity" />
+        <activity android:name=".wishlist.WishListActivity" />
+        <activity android:name=".myaccount.mypaycards.PayCardsActivity" />
+        <activity android:name=".myaccount.contactus.ContactUsActivity" />
+        <activity android:name=".orders.orderconfirmation.OrderConfirmActivity" />
+        <activity
+            android:name=".DotLoaderActivity"
+            android:theme="@style/AppTheme.CustomTheme" />
+        <activity android:name=".myaccount.profile.UpdateProfileActivity" />
+        <activity android:name=".orders.order.OrderActivity"></activity>
     </application>
 
 </manifest>

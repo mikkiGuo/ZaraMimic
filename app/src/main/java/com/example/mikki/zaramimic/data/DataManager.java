@@ -32,6 +32,7 @@ public class DataManager implements  IDataManager{
         networkHelper.sendEmailToServerForReset(listener, email);
     }
 
+
     @Override
     public void userRegistration(OnSignUpListener listener, UserProfile profile) {
         networkHelper.userRegistration(listener, profile);
@@ -69,9 +70,10 @@ public class DataManager implements  IDataManager{
     }
 
     @Override
-    public void deleteProductFromShoppingCartDB(OnShoppingCartListener listener) {
-        dbHelper.deleteProductFromShoppingCartDB(listener);
+    public void deleteProductFromShoppingCartDB(OnShoppingCartListener listener, Product product) {
+        dbHelper.deleteProductFromShoppingCartDB(listener, product);
     }
+
 
     @Override
     public void addProductToWishListDB(OnProductListener listener, Product product) {
@@ -81,6 +83,11 @@ public class DataManager implements  IDataManager{
     @Override
     public void readProductsFromWishListDB(OnWishListListener listener) {
         dbHelper.readProductsFromWishListDB(listener);
+    }
+
+    @Override
+    public void updateUserProfileDB(OnProfileUpdateListener listener) {
+        dbHelper.updateUserProfileDB(listener);
     }
 
 }

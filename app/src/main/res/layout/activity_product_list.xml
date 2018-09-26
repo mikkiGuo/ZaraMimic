@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".products.productlist.ProductListActivity">
+
+    <steelkiwi.com.library.DotsLoaderView
+    android:id="@+id/dotsLoader"
+    android:visibility="visible"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:dlv_item_drawable="@drawable/circle_background"
+    app:dlv_line_color="@color/colorAccent">
+
+</steelkiwi.com.library.DotsLoaderView>
 
     <include layout="@layout/bar_header_productlist"></include>
 
