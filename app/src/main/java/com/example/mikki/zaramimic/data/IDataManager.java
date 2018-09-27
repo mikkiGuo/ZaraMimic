@@ -3,6 +3,7 @@ package com.example.mikki.zaramimic.data;
 import com.example.mikki.zaramimic.data.database.IDbHelper;
 import com.example.mikki.zaramimic.data.network.INetworkHelper;
 import com.example.mikki.zaramimic.data.network.model.Category;
+import com.example.mikki.zaramimic.data.network.model.OrderHistory;
 import com.example.mikki.zaramimic.data.network.model.Product;
 import com.example.mikki.zaramimic.data.network.model.SubCategory;
 
@@ -44,8 +45,17 @@ public interface IDataManager extends IDbHelper, INetworkHelper {
         void bindProductsToView(List<Product> productList);
     }
 
-    interface OnCheckoutListener{
+    interface OnOrderListener {
 
+        //void passItemInfo(String pid, String pname, String pprice, String porder_quan);
+        void passItemsFromCartToOrder(List<Product> cart);
+
+        void isOrderPlacedSucessful(boolean result);
+
+    }
+
+    interface OnOrderHistoryListener{
+        void bindOrderHistoryToView(List<OrderHistory> orderHistoryList);
     }
 
     /*---------------------------------------------------------------------------------------------
@@ -69,13 +79,6 @@ public interface IDataManager extends IDbHelper, INetworkHelper {
         void isUpateSuccessful(boolean result);
     }
     
-    interface OnOrderListener {
 
-        //void passItemInfo(String pid, String pname, String pprice, String porder_quan);
-        void passItemsFromCartToOrder(List<Product> cart);
-
-        void isOrderPlacedSucessful(boolean result);
-
-    }
 
 }

@@ -29,5 +29,14 @@ public class URLKeeper {
         return URL;
     }
 
+    public String generateURLOrderHistory(String apiKey, String userID, String mobile){
+
+        String url_orderhistory = "http://rjtmobile.com/aamir/e-commerce/android-app/order_history.php?"+
+                "api_key=" + apiKey +
+                "&user_id=" + userID +
+                "&mobile=" + mobile;
+        return url_orderhistory;
+    }
+
 
 }

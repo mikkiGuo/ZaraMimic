@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TechDemoActivity">
+
+    <Button
+        android:id="@+id/btn_asyntask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="19dp"
+        android:text=" Asyn Task"
+        app:layout_constraintStart_toStartOf="@+id/btn_mvp"
+        app:layout_constraintTop_toBottomOf="@+id/btn_mvp" />
+
+    <Button
+        android:id="@+id/btn_recyclerview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="31dp"
+        android:text="Recycler View"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_listview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="19dp"
+        android:text="List View"
+        app:layout_constraintStart_toStartOf="@+id/btn_recyclerview"
+        app:layout_constraintTop_toBottomOf="@+id/btn_recyclerview" />
+
+    <Button
+        android:id="@+id/btn_mvp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="31dp"
+        android:text="MVP"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_volley"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="Volley"
+        app:layout_constraintStart_toStartOf="@+id/btn_github"
+        app:layout_constraintTop_toBottomOf="@+id/btn_github" />
+
+    <Button
+        android:id="@+id/btn_cardview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="21dp"
+        android:text="Card View"
+        app:layout_constraintStart_toStartOf="@+id/btn_listview"
+        app:layout_constraintTop_toBottomOf="@+id/btn_listview" />
+
+    <Button
+        android:id="@+id/btn_sqldatabase"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="19dp"
+        android:text="SQL Database"
+        app:layout_constraintStart_toStartOf="@+id/btn_language"
+        app:layout_constraintTop_toBottomOf="@+id/btn_language" />
+
+    <Button
+        android:id="@+id/btn_sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Share Preference"
+        app:layout_constraintStart_toStartOf="@+id/btn_sqldatabase"
+        app:layout_constraintTop_toBottomOf="@+id/btn_sqldatabase" />
+
+    <Button
+        android:id="@+id/btn_material"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="Material Design"
+        app:layout_constraintBottom_toTopOf="@+id/btn_dagger"
+        app:layout_constraintStart_toStartOf="@+id/btn_sp" />
+
+    <Button
+        android:id="@+id/btn_paypal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="19dp"
+        android:text="Paypal"
+        app:layout_constraintStart_toStartOf="@+id/btn_cardview"
+        app:layout_constraintTop_toBottomOf="@+id/btn_cardview" />
+
+    <Button
+        android:id="@+id/btn_github"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Github"
+        app:layout_constraintStart_toStartOf="@+id/btn_paypal"
+        app:layout_constraintTop_toBottomOf="@+id/btn_paypal" />
+
+    <Button
+        android:id="@+id/btn_language"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="21dp"
+        android:text="Multi-Language"
+        app:layout_constraintStart_toStartOf="@+id/btn_asyntask"
+        app:layout_constraintTop_toBottomOf="@+id/btn_asyntask" />
+
+    <Button
+        android:id="@+id/btn_dagger"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dagger"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btn_butterknife"
+        app:layout_constraintStart_toStartOf="@+id/btn_material" />
+
+    <Button
+        android:id="@+id/btn_butterknife"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="46dp"
+        android:layout_marginTop="24dp"
+        android:text="Butterknife"
+        app:layout_constraintEnd_toEndOf="@+id/btn_volley"
+        app:layout_constraintTop_toBottomOf="@+id/btn_volley" />
+</android.support.constraint.ConstraintLayout>

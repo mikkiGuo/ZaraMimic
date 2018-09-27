@@ -1,3 +1,35 @@
 <resources>
     <string name="app_name">ZaraMimic</string>
+
+    <!--universal-->
+
+
+    <!--category-->
+    <string name="left">CORNER shops</string>
+    <string name="center">COLLECTION</string>
+    <string name="right">My Account</string>
+
+    <!--forgot password-->
+    <string name="email">Email</string>
+    <string name="resetpw">Reset Password</string>
+
+    <!--login-->
+    <string name="existing_cus">EXISTING CUSTOMER</string>
+    <string name="mobile">Phone Number</string>
+    <string name="password">Password</string>
+    <string name="btn_login">Log In</string>
+    <string name="forpw_msg">forgot your password?</string>
+    <string name="newcus">NEW CUSTOMER</string>
+    <string name="btn_create_acct">Create Account</string>
+
+    <!--my account-->
+    <string name="orderhistory">Orders placed</string>
+    <string name="myinfo">My Information</string>
+    <string name="paycards">Payment cards</string>
+    <string name="contactus">Contact us</string>
+    <string name="help">Help</string>
+    <string name="setting">Settings</string>
+    <string name="logout">Logout</string>
+
+
 </resources>

@@ -69,7 +69,7 @@ public class MyAccountActivity extends AppCompatActivity implements IMyAccountVi
                 intent = new Intent(this, ContactUsActivity.class);
                 break;
             case R.id.btn_myacct_settings:
-                intent = new Intent(this, ContactUsActivity.class);
+                intent = new Intent(android.provider.Settings.ACTION_SETTINGS);
                 break;
             case R.id.btn_logout:
                 SharedPreferences.Editor editor = sharedPreferences.edit();

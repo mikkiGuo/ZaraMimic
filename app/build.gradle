@@ -54,4 +54,7 @@ dependencies {
     //dagger library
     implementation 'com.google.dagger:dagger:2.10'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.10'
+
+    //payment gateway
+    implementation 'com.simplify:simplify-android:3.0.0'
 }

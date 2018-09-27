@@ -12,7 +12,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.mikki.zaramimic.DotLoaderActivity;
 import com.example.mikki.zaramimic.R;
 import com.example.mikki.zaramimic.data.network.model.Product;
 import com.example.mikki.zaramimic.products.productpage.ProductPageActivity;
@@ -43,10 +42,7 @@ public class ProductListActivity extends AppCompatActivity implements IProductLi
         ButterKnife.bind(this);
 
         iProductListPresenter = new ProductListPresenter(this);
-        //iProductListPresenter.onActivityCreated();
-        //recyclerView = findViewById(R.id.rv_productlist);
-        /*Intent intent = new Intent(this, DotLoaderActivity.class);
-        startActivity(intent);*/
+
         dotsLoaderView = findViewById(R.id.dotsLoader);
         downloadData();
 

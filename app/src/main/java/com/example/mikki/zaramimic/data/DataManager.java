@@ -62,6 +62,11 @@ public class DataManager implements  IDataManager{
         networkHelper.checkout(listener, orderItemList);
     }
 
+    @Override
+    public void getOrderHistoryFromServer(OnOrderHistoryListener listener) {
+        networkHelper.getOrderHistoryFromServer(listener);
+    }
+
 
     /*---------------------------------------------------------------------------------------------
                                     Local Database Methods

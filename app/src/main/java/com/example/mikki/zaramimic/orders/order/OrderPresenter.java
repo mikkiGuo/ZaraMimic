@@ -8,7 +8,7 @@ import com.example.mikki.zaramimic.data.network.model.Product;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrderPresenter implements IOrderPresenter, IDataManager.OnOrderListener, IDataManager.OnCheckoutListener {
+public class OrderPresenter implements IOrderPresenter, IDataManager.OnOrderListener {
     IOrderView iOrderView;
     IDataManager iDataManager;
     public OrderPresenter(OrderActivity orderActivity) {

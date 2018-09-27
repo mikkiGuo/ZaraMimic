@@ -20,48 +20,47 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:layout_marginTop="10dp"
-        android:text="TextView"
         android:textAlignment="viewStart" />
 
     <Button
         android:id="@+id/btn_myacct_ordersplaced"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Orders placed" />
+        android:text="@string/orderhistory" />
 
     <Button
         android:id="@+id/btn_myacct_myinfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="My Information" />
+        android:text="@string/myinfo" />
 
     <Button
         android:id="@+id/btn_myacct_paycards"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Payment cards" />
+        android:text="@string/paycards" />
 
     <Button
         android:id="@+id/btn_myacct_contactus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Contact us" />
+        android:text="@string/contactus" />
 
     <Button
         android:id="@+id/btn_myacct_help"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Help" />
+        android:text="@string/help" />
 
     <Button
         android:id="@+id/btn_myacct_settings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Settings" />
+        android:text="@string/setting" />
 
     <Button
         android:id="@+id/btn_logout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Logout" />
+        android:text="@string/logout" />
 </LinearLayout>

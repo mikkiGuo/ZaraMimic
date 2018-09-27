@@ -18,9 +18,11 @@ import com.example.mikki.zaramimic.data.AppController;
 import com.example.mikki.zaramimic.data.network.model.Category;
 import com.example.mikki.zaramimic.data.network.model.Login;
 import com.example.mikki.zaramimic.data.network.model.Order;
+import com.example.mikki.zaramimic.data.network.model.OrderHistory;
 import com.example.mikki.zaramimic.data.network.model.Product;
 import com.example.mikki.zaramimic.data.network.model.SubCategory;
 import com.example.mikki.zaramimic.data.network.model.UserProfile;
+import com.example.mikki.zaramimic.myaccount.orderhistory.OrderHistoryPresenter;
 import com.example.mikki.zaramimic.orders.order.OrderPresenter;
 
 import org.json.JSONArray;
@@ -38,6 +40,7 @@ public class NetworkHelper implements INetworkHelper {
     List<Category> categoryList;
     List<SubCategory> subCategoryList;
     List<Product> productList;
+    List<OrderHistory> orderHistories;
 
 
     private static final String TAG = "hello";
@@ -178,28 +181,17 @@ public class NetworkHelper implements INetworkHelper {
 
     }
 
+    @Override
+    public void getOrderHistoryFromServer(IDataManager.OnOrderHistoryListener listener) {
+        orderHistories = new ArrayList<OrderHistory>();
+        String apiKey = sharedPreferences.getString("api_key", "");
+        String userID = sharedPreferences.getString("user_id", "");
+        String mobile = sharedPreferences.getString("mobile", "");
 
+        String url_orderhistory = urlKeeper.generateURLOrderHistory(apiKey, userID, mobile);
 
-    /*@Override
-    public void checkout(IDataManager.OnCheckoutListener onCheckoutListener, String pid,
-                         String pname, String porder_quan, String pprice, String userID,
-                         String fname, String billingadd, String deliveryadd, String phone,
-                         String email, String apiKey) {
-        String URL = "http://rjtmobile.com/aamir/e-commerce/android-app/orders.php?"
-                +"&item_id=" + pid +
-                "&item_names="+pname+
-                "&item_quantity=" + porder_quan +
-                "&final_price=" + pprice +
-                "&&api_key=" + apiKey +
-                "&user_id=" + userID +
-                "&user_name=" + fname +
-                "&billingadd=" + billingadd +
-                "&deliveryadd=" + deliveryadd +
-                "&mobile=" + phone +
-                "&email=" + email;
-
-        //JsonObjectRequest jsonObjectRequest
-    }*/
+        readOrderHistoryFromServer(listener, url_orderhistory);
+    }
 
 
     /*-----------------------------------------------------------------------------------
@@ -502,6 +494,69 @@ public class NetworkHelper implements INetworkHelper {
 
         // Adding request to request queue
         AppController.getInstance().addToRequestQueue(jsonObjReq);
+    }
+
+
+    private void readOrderHistoryFromServer(final IDataManager.OnOrderHistoryListener listener,
+                                            String url_orderhistory){
+
+        Log.d(TAG, "readOrderHistoryFromServer: ");
+
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
+                url_orderhistory, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                Log.d(TAG, "onResponse: ");
+                // Parsing json object response
+                // response will be a json object
+                try {
+                    JSONArray jsonArray = response.getJSONArray("Order history");
+
+                    for(int i = 0; i<jsonArray.length(); i++){
+
+                        JSONObject product = jsonArray.getJSONObject(i);
+
+                        String orderid = product.getString("orderid");
+                        String orderstatus = product.getString("orderstatus");
+                        String username = product.getString("name");
+                        String billingadd = product.getString("billingadd");
+                        String deliveryadd = product.getString("deliveryadd");
+                        String mobile = product.getString("mobile");
+                        String email = product.getString("email");
+                        String itemid = product.getString("itemid");
+                        String itemname = product.getString("itemname");
+                        String itemquantity = product.getString("itemquantity");
+                        String totalprice = product.getString("totalprice");
+                        String paidprice = product.getString("paidprice");
+                        String placedon = product.getString("placedon");
+
+                        OrderHistory orderHistory = new OrderHistory(orderid, orderstatus, username, billingadd,
+                                deliveryadd, mobile, email, itemid, itemname, itemquantity, totalprice,
+                                paidprice, placedon);
+
+                        orderHistories.add(orderHistory);
+
+                    }
+                    listener.bindOrderHistoryToView(orderHistories);
+
+                } catch (JSONException e) {
+                    Log.d(TAG, "onErrors: ");
+                    e.printStackTrace();
+
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d(TAG, "onErrorResponse: ");
+            }
+        });
+
+        // Adding request to request queue
+        AppController.getInstance().addToRequestQueue(jsonObjReq);
+
     }
 
 }

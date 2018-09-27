@@ -40,11 +40,9 @@
         <activity android:name=".myaccount.mypaycards.PayCardsActivity" />
         <activity android:name=".myaccount.contactus.ContactUsActivity" />
         <activity android:name=".orders.orderconfirmation.OrderConfirmActivity" />
-        <activity
-            android:name=".DotLoaderActivity"
-            android:theme="@style/AppTheme.CustomTheme" />
         <activity android:name=".myaccount.profile.UpdateProfileActivity" />
-        <activity android:name=".orders.order.OrderActivity"></activity>
+        <activity android:name=".orders.order.OrderActivity" />
+        <activity android:name=".TechDemoActivity"></activity>
     </application>
 
 </manifest>

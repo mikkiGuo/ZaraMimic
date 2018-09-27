@@ -37,26 +37,20 @@
             android:id="@+id/tab_category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="CORNER shops" />
+            android:text="@string/left" />
 
         <android.support.design.widget.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="COLLECTION" />
+            android:text="@string/center" />
 
         <android.support.design.widget.TabItem
             android:id="@+id/tab_myacct"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="My Account" />
+            android:text="@string/right" />
     </android.support.design.widget.TabLayout>
 
-    <!--<android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_category_list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    </android.support.v7.widget.RecyclerView>-->
 
 
 </LinearLayout>

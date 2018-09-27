@@ -18,7 +18,7 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
             "DROP TABLE IF EXISTS " + WishListTableContractor.WishListEntry.TABLE_NAME;
 
     public DatabaseOpenHelper(Context context) {
-        super(context,"zaraDatabase",null, 6);
+        super(context,"zaraDatabase",null, 7);
     }
 
     @Override
@@ -35,8 +35,6 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
         db.execSQL(SQL_DELETE_ENTRIES);
-        onCreate(db);
-
         db.execSQL(SQL_DELETE_ENTRIES2);
         onCreate(db);
     }
