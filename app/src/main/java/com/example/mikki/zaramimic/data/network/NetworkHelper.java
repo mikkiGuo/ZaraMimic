@@ -10,13 +10,18 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
+import com.example.mikki.zaramimic.dagger.CategoryModule;
+import com.example.mikki.zaramimic.dagger.DaggerMyComponent;
+import com.example.mikki.zaramimic.dagger.MyComponent;
 import com.example.mikki.zaramimic.data.IDataManager;
 import com.example.mikki.zaramimic.data.AppController;
 import com.example.mikki.zaramimic.data.network.model.Category;
 import com.example.mikki.zaramimic.data.network.model.Login;
+import com.example.mikki.zaramimic.data.network.model.Order;
 import com.example.mikki.zaramimic.data.network.model.Product;
 import com.example.mikki.zaramimic.data.network.model.SubCategory;
 import com.example.mikki.zaramimic.data.network.model.UserProfile;
+import com.example.mikki.zaramimic.orders.order.OrderPresenter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,6 +29,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Inject;
 
 
 public class NetworkHelper implements INetworkHelper {
@@ -34,9 +41,19 @@ public class NetworkHelper implements INetworkHelper {
 
 
     private static final String TAG = "hello";
+    URLKeeper urlKeeper = URLKeeper.getInstance();
+
     public static SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     Context context;
+
+
+    //dagger class declaration
+    @Inject
+    Category c;
+    //@Inject
+    //CategoryModule categoryModule;
+    MyComponent myComponent;
 
 
     public NetworkHelper(Context context) {
@@ -135,6 +152,55 @@ public class NetworkHelper implements INetworkHelper {
 
         readProductListFromServer(listener, url_productlist);
     }
+
+    @Override
+    public void checkout(IDataManager.OnOrderListener listener, List<Order> orderItemList) {
+
+        for(int i = 0; i< orderItemList.size(); i++) {
+            String item_id = orderItemList.get(i).getItem_id();
+            String item_name = orderItemList.get(i).getUser_name();
+            String item_quantity = orderItemList.get(i).getItem_quantity();
+            String final_price = orderItemList.get(i).getFinal_price();
+            String api_key = orderItemList.get(i).getApi_key();
+            String user_id = orderItemList.get(i).getUser_id();
+            String user_name = orderItemList.get(i).getUser_name();
+            String billadd = orderItemList.get(i).getBillingadd();
+            String deliveryadd = orderItemList.get(i).getDeliveryadd();
+            String mobile = orderItemList.get(i).getMobile();
+            String email = orderItemList.get(i).getEmail();
+
+            String order_url = urlKeeper.generateURLOrder(item_id, item_name, item_quantity,
+                    final_price, api_key, user_id, user_name, billadd, deliveryadd, mobile, email);
+
+            addOrderToServer(listener, order_url);
+
+        }
+
+    }
+
+
+
+    /*@Override
+    public void checkout(IDataManager.OnCheckoutListener onCheckoutListener, String pid,
+                         String pname, String porder_quan, String pprice, String userID,
+                         String fname, String billingadd, String deliveryadd, String phone,
+                         String email, String apiKey) {
+        String URL = "http://rjtmobile.com/aamir/e-commerce/android-app/orders.php?"
+                +"&item_id=" + pid +
+                "&item_names="+pname+
+                "&item_quantity=" + porder_quan +
+                "&final_price=" + pprice +
+                "&&api_key=" + apiKey +
+                "&user_id=" + userID +
+                "&user_name=" + fname +
+                "&billingadd=" + billingadd +
+                "&deliveryadd=" + deliveryadd +
+                "&mobile=" + phone +
+                "&email=" + email;
+
+        //JsonObjectRequest jsonObjectRequest
+    }*/
+
 
     /*-----------------------------------------------------------------------------------
             private methods to read different data from server
@@ -251,8 +317,19 @@ public class NetworkHelper implements INetworkHelper {
                         Log.d("data", "onResponse: " + cname);
 
                         //Toast.makeText(MainActivity.this, "" + cname, Toast.LENGTH_SHORT).show();
-                        Category c = new Category(cid, cname, cdiscription, cimagerl);
+                        myComponent = DaggerMyComponent.builder()
+                                .categoryModule(new CategoryModule(cid, cname, cdiscription, cimagerl))
+                                .build();
+
+                        myComponent.inject(NetworkHelper.this);
+
+                        /*c.setCid(cid);
+                        c.setCname(cname);
+                        c.setCdiscription(cdiscription);
+                        c.setCimagerl(cimagerl);*/
+
                         categoryList.add(c);
+
 
                     }
                     listener.bindCategoriesToView(categoryList);
@@ -394,6 +471,38 @@ public class NetworkHelper implements INetworkHelper {
 
     }
 
+
+    private void addOrderToServer(final IDataManager.OnOrderListener listener, String order_url) {
+
+
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
+                order_url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                Log.d(TAG, "onResponseOrder: ");
+                try {
+                    JSONArray jsonArray = response.getJSONArray("Order confirmed");
+
+                    listener.isOrderPlacedSucessful(true);
+
+                } catch (JSONException e) {
+                    Log.d(TAG, "onError: ");
+                    e.printStackTrace();
+                    listener.isOrderPlacedSucessful(false);
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d(TAG, "onErrorResponse: ");
+                listener.isOrderPlacedSucessful(false);
+            }
+        });
+
+        // Adding request to request queue
+        AppController.getInstance().addToRequestQueue(jsonObjReq);
+    }
 
 }
 

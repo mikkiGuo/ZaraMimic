@@ -15,4 +15,5 @@ public interface IDbHelper {
 
     void updateUserProfileDB(IDataManager.OnProfileUpdateListener listener);
 
+    void getProductsFromShoppingCartDB(IDataManager.OnOrderListener onOrderListener);
 }

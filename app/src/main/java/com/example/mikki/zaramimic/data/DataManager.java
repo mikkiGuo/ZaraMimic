@@ -7,8 +7,11 @@ import com.example.mikki.zaramimic.data.database.IDbHelper;
 import com.example.mikki.zaramimic.data.network.INetworkHelper;
 import com.example.mikki.zaramimic.data.network.NetworkHelper;
 import com.example.mikki.zaramimic.data.network.model.Login;
+import com.example.mikki.zaramimic.data.network.model.Order;
 import com.example.mikki.zaramimic.data.network.model.Product;
 import com.example.mikki.zaramimic.data.network.model.UserProfile;
+
+import java.util.List;
 
 
 public class DataManager implements  IDataManager{
@@ -54,6 +57,11 @@ public class DataManager implements  IDataManager{
         networkHelper.getProductListFromServer(listener);
     }
 
+    @Override
+    public void checkout(OnOrderListener listener, List<Order> orderItemList) {
+        networkHelper.checkout(listener, orderItemList);
+    }
+
 
     /*---------------------------------------------------------------------------------------------
                                     Local Database Methods
@@ -88,6 +96,11 @@ public class DataManager implements  IDataManager{
     @Override
     public void updateUserProfileDB(OnProfileUpdateListener listener) {
         dbHelper.updateUserProfileDB(listener);
+    }
+
+    @Override
+    public void getProductsFromShoppingCartDB(OnOrderListener listener) {
+        dbHelper.getProductsFromShoppingCartDB(listener);
     }
 
 }

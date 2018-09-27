@@ -84,6 +84,16 @@ public class SqlQueries {
         return queries;
     }
 
+    /*public String updatePquantityInShoppingCartTable(String pID, String quantity){
+
+        String queries = "UPDATE " + ShoppingCartEntry.TABLE_NAME
+                + " SET " + ShoppingCartEntry.Pquantity
+                + "=" + SINGLE_QUOTE + quantity + SINGLE_QUOTE
+                + "WHERE " + ShoppingCartEntry.Pid
+                + "=" + SINGLE_QUOTE + pID + SINGLE_QUOTE + SEMICOLUMN;
+        return queries;
+    }*/
+
 
 
 }

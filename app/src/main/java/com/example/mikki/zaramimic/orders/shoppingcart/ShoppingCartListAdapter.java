@@ -54,11 +54,14 @@ public class ShoppingCartListAdapter extends RecyclerView.Adapter<ShoppingCartLi
         holder.tv_name.setText(productList.get(position).getPname());
 
         int order_quantity = productList.get(position).getOrder_quantity();
-        Log.d(TAG, "onBindViewHolder: " + order_quantity);
+        int quantity = Integer.parseInt(productList.get(position).getQuantity());
+        Log.d(TAG, "onBindViewHolder: " + quantity);
         String prize = productList.get(position).getPrize();
         int price = Integer.parseInt(prize);
         int total = order_quantity * price;
+        //int total = quantity * price;
         holder.tv_quantity_price.setText(String.valueOf(order_quantity) + " x "+ prize + " USD");
+        //holder.tv_quantity_price.setText(String.valueOf(quantity) + " x "+ prize + " USD");
         holder.tv_totalprice.setText(String.valueOf(total) + " USD");
 
         holder.bind(productList.get(position), listener);

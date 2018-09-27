@@ -18,7 +18,7 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
             "DROP TABLE IF EXISTS " + WishListTableContractor.WishListEntry.TABLE_NAME;
 
     public DatabaseOpenHelper(Context context) {
-        super(context,"zaraDatabase",null, 4);
+        super(context,"zaraDatabase",null, 6);
     }
 
     @Override

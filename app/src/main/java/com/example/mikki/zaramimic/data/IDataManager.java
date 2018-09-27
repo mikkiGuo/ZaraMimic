@@ -44,6 +44,9 @@ public interface IDataManager extends IDbHelper, INetworkHelper {
         void bindProductsToView(List<Product> productList);
     }
 
+    interface OnCheckoutListener{
+
+    }
 
     /*---------------------------------------------------------------------------------------------
                                 LOCAL DATABASE LISTENERS
@@ -64,6 +67,15 @@ public interface IDataManager extends IDbHelper, INetworkHelper {
 
     interface OnProfileUpdateListener{
         void isUpateSuccessful(boolean result);
+    }
+    
+    interface OnOrderListener {
+
+        //void passItemInfo(String pid, String pname, String pprice, String porder_quan);
+        void passItemsFromCartToOrder(List<Product> cart);
+
+        void isOrderPlacedSucessful(boolean result);
+
     }
 
 }

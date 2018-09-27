@@ -3,6 +3,9 @@ package com.example.mikki.zaramimic.data.network.model;
 public class Category {
     String cid, cname, cdiscription, cimagerl;
 
+    public Category() {
+    }
+
     public Category(String cid, String cname, String cdiscription, String cimagerl) {
         this.cid = cid;
         this.cname = cname;

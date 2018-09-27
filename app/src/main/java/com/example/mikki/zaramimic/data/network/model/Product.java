@@ -70,6 +70,16 @@ public class Product implements Parcelable{
     public void setOrder_quantity(int order_quantity) {
         this.order_quantity = order_quantity;
     }
+    public void addQuantity(){
+        int ct = Integer.parseInt(this.quantity);
+        ct++;
+        this.quantity = String.valueOf(ct);
+    }
+    public void subtractQuantity(){
+        int ct = Integer.parseInt(this.quantity);
+        ct--;
+        this.quantity = String.valueOf(ct);
+    }
     public void addOrder_quantity(){
         this.order_quantity++;
     }

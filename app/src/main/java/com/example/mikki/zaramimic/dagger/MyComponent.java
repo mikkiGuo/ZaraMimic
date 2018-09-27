@@ -7,7 +7,7 @@ import javax.inject.Singleton;
 import dagger.Component;
 
 //wiring with injection
-@Component(modules = {})
+@Component(modules = {CategoryModule.class})
 @Singleton
 public interface MyComponent {
 
